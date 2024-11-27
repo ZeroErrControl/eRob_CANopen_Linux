@@ -1,6 +1,6 @@
 # eRob_CANopen_Linux
 
-'''bash
+```bash
 
 mkdir erob_project
 cd erob_project
