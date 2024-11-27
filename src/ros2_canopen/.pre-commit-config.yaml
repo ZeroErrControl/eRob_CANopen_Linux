@@ -1,0 +1,105 @@
+# To use:
+#
+#     pre-commit run -a
+#
+# Or:
+#
+#     pre-commit install  # (runs every time you commit in git)
+#
+# To update this file:
+#
+#     pre-commit autoupdate
+#
+# See https://github.com/pre-commit/pre-commit
+exclude: '.*\.patch'
+repos:
+  # Standard hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-xml
+      - id: check-yaml
+        exclude: canopen_core/test/bus_configs/bad_driver_duplicate.yml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+      - id: fix-byte-order-marker
+
+  # Python hooks
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.38.2
+    hooks:
+    -   id: pyupgrade
+        args: [--py36-plus]
+
+  - repo: https://github.com/psf/black
+    rev: 22.8.0
+    hooks:
+      - id: black
+        args: ["--line-length=99"]
+
+  # CPP hooks
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        description: Format files with ClangFormat.
+        entry: clang-format-14
+        language: system
+        files: \.(c|cc|cxx|cpp|frag|glsl|h|hpp|hxx|ih|ispc|ipp|java|js|m|proto|vert)$
+        args: ['-fallback-style=none', '-i']
+
+  # Cmake hooks
+  # - repo: local
+  #   hooks:
+  #     - id: ament_lint_cmake
+  #       name: ament_lint_cmake
+  #       description: Check format of CMakeLists.txt files.
+  #       stages: [commit]
+  #       entry: ament_lint_cmake
+  #       language: system
+  #       files: CMakeLists\.txt$
+  #       exclude: lely_core_libraries\/CMakeLists\.txt$
+
+  # # Copyright
+  - repo: local
+    hooks:
+      - id: ament_copyright
+        name: ament_copyright
+        description: Check if copyright notice is available in all files.
+        stages: [commit]
+        entry: ament_copyright
+        args: ["--add-missing", "ROS-Industrial", "apache2"]
+        language: system
+
+  # Docs - RestructuredText hooks
+  - repo: https://github.com/PyCQA/doc8
+    rev: v1.0.0
+    hooks:
+      - id: doc8
+        args: ['--max-line-length=100', '--ignore=D001']
+        exclude: CHANGELOG\.rst$
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0
+    hooks:
+      - id: rst-backticks
+        exclude: CHANGELOG\.rst$
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
+  # Spellcheck in comments and docs
+  # skipping of *.svg files is not working...
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.1
+    hooks:
+      - id: codespell
+        args: ['--write-changes', '-I', '.codespellignore']
+        exclude: CHANGELOG\.rst|\.(svg|pyc|drawio|dcf|eds)$
