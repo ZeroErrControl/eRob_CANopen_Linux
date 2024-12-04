@@ -4,6 +4,7 @@
 
 mkdir erob_project
 cd erob_project
+git clone git@github.com:ZeroErrControl/eRob_CANopen_Linux.git
 colcon build
 source ./install/setup.bash
 ```
