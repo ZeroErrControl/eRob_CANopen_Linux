@@ -21,14 +21,8 @@ eRob Master is a ROS 2-based CANopen motor controller used to control motors tha
 
 ### Build and Install
 
-1. Create workspace
 
-   ```bash
-   mkdir -p ~/erob_ws/src
-   cd ~/erob_ws/src
-   ```
-
-2. Clone repository
+1. Clone repository
 
    ```bash
    git clone git@github.com:ZeroErrControl/eRob_CANopen_Linux.git
@@ -37,7 +31,7 @@ eRob Master is a ROS 2-based CANopen motor controller used to control motors tha
 3. Build
 
    ```bash
-   cd ~/erob_ws
+   cd ~/eRob_CANopen_Linux
    colcon build 
    ```
 
