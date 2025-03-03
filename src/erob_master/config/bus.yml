@@ -1,0 +1,19 @@
+options:
+  dcf_path: "@BUS_CONFIG_PATH@/eds"
+
+master:
+  node_id: 1
+  driver: "ros2_canopen::MasterDriver"
+  package: "canopen_master_driver"
+  sync_period: 10000
+
+defaults:
+  dcf: "ZeroErrDriver.eds"
+  driver: "ros2_canopen::Cia402Driver"
+  package: "canopen_402_driver"
+  heartbeat_producer: 1000
+  heartbeat_consumer: 2000
+
+nodes:
+  motor_1:
+    node_id: 2 
