@@ -16,7 +16,7 @@ eRob Master is a ROS 2-based CANopen motor controller used to control motors tha
 ### Prerequisites
 
 - ROS 2 (Humble or higher version recommended)
-- CAN interface (e.g., USB-CAN adapter)
+- CAN interface (e.g., Socket-CAN adapter)
 - Motors supporting CANopen protocol
 
 ### Build and Install
@@ -31,14 +31,14 @@ eRob Master is a ROS 2-based CANopen motor controller used to control motors tha
 2. Clone repository
 
    ```bash
-   git clone https://github.com/your-username/erob_master.git
+   git clone git@github.com:ZeroErrControl/eRob_CANopen_Linux.git
    ```
 
 3. Build
 
    ```bash
    cd ~/erob_ws
-   colcon build --packages-select erob_master
+   colcon build 
    ```
 
 4. Launch node
