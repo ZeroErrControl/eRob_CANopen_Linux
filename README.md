@@ -39,7 +39,7 @@ eRob Master is a ROS 2-based CANopen motor controller used to control motors tha
 
    ```bash
    source install/setup.bash
-   ros2 launch erob_master erob_master.launch.py
+   ros2 launch erob_master canopen_ros2.launch.py
    ```
 
 ## Configure CAN Interface
